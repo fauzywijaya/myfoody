@@ -11,6 +11,7 @@ export 'home/presentation/home_state.dart';
 // *RESTAURANT
 // *RESTAURANT - LIST
 export 'restaurant/presentation/list/restaurant_list_page.dart.dart';
+export 'restaurant/presentation/list/widget/widget.dart';
 
 // *RESTAURANT - FAVORITE
 export 'restaurant/presentation/favorite/restaurant_favorite_page.dart';

@@ -21,6 +21,7 @@ class AppThemes {
         elevation: 0.0,
         backgroundColor: AppColors.darkGrey,
         titleTextStyle: AppTypography.titleMd,
+        toolbarTextStyle: TextThemes.darkTextTheme.headlineSmall,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.darkGrey,
@@ -60,6 +61,7 @@ class AppThemes {
         elevation: 0,
         backgroundColor: AppColors.white,
         titleTextStyle: AppTypography.titleMd,
+        toolbarTextStyle: TextThemes.textTheme.headlineSmall,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.white,

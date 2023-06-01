@@ -7,6 +7,7 @@ environment:
   sdk: '>=2.19.3 <3.0.0'
 
 dependencies:
+  animate_do: ^3.0.2
   cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.2
   custom_navigation_bar: ^0.8.2
@@ -26,7 +27,6 @@ dependencies:
   json_serializable: ^6.5.4
   lottie: ^2.3.2
   modal_bottom_sheet: ^2.1.2
-  path_provider: ^2.0.15
   pretty_dio_logger: ^1.1.1
   readmore: ^2.2.0
   rxdart: ^0.27.7
