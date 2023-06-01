@@ -6,36 +6,64 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 /// -----------------------------------
 /// Initialize screen util and set default size
 /// by device size
-void setupScreenUtil(BuildContext context) {
-  double baseWidth = MediaQuery.of(context).size.width;
-  double baseHeight = MediaQuery.of(context).size.height;
-  double defaultScreenUtilWidth = 1080;
-  double defaultScreenUtilHeight = 1920;
-  double iPadPro12InchWidth = 2048;
-  double iPadPro12InchHeight = 2732;
-  double designWidth = 0;
-  double designHeight = 0;
-
-  /// ipad 11-inch width: 834, height: 1194
-  /// ipad 9-inch width: 768, height: 1024
-  if (baseWidth >= 768) {
-    designWidth = iPadPro12InchWidth;
-  } else {
-    designWidth = defaultScreenUtilWidth;
+class ScreenHelper {
+  static double sizeWidth(double baseWidth) {
+    double defaultScreenUtilWidth = 1080;
+    double iPadPro12InchWidth = 2048;
+    double designWidth = 0;
+    if (baseWidth >= 768) {
+      designWidth = iPadPro12InchWidth;
+    } else {
+      designWidth = defaultScreenUtilWidth;
+    }
+    return designWidth;
   }
 
-  if (baseHeight >= 1024) {
-    designHeight = iPadPro12InchHeight;
-  } else {
-    designHeight = defaultScreenUtilHeight;
-  }
+  static double sizeHeight(double baseHeight) {
+    double defaultScreenUtilHeight = 1920;
+    double iPadPro12InchHeight = 2732;
+    double designHeight = 0;
 
-  ScreenUtil.init(
-    context,
-    minTextAdapt: true,
-    designSize: Size(designWidth, designHeight),
-  );
+    if (baseHeight >= 1024) {
+      designHeight = iPadPro12InchHeight;
+    } else {
+      designHeight = defaultScreenUtilHeight;
+    }
+
+    return designHeight;
+  }
 }
+
+// void setupSize(baseWidth, baseHeight) {
+//   // double baseWidth = MediaQuery.of(context).size.width;
+//   // double baseHeight = MediaQuery.of(context).size.height;
+//   double defaultScreenUtilWidth = 1080;
+//   double defaultScreenUtilHeight = 1920;
+//   double iPadPro12InchWidth = 2048;
+//   double iPadPro12InchHeight = 2732;
+//   double designWidth = 0;
+//   double designHeight = 0;
+
+//   /// ipad 11-inch width: 834, height: 1194
+//   /// ipad 9-inch width: 768, height: 1024
+//   if (baseWidth >= 768) {
+//     designWidth = iPadPro12InchWidth;
+//   } else {
+//     designWidth = defaultScreenUtilWidth;
+//   }
+
+//   if (baseHeight >= 1024) {
+//     designHeight = iPadPro12InchHeight;
+//   } else {
+//     designHeight = defaultScreenUtilHeight;
+//   }
+
+//   // ScreenUtil.init(
+//   //   context,
+//   //   minTextAdapt: true,
+//   //   designSize: Size(designWidth, designHeight),
+//   // );
+// }
 
 bool isLargePhone(BuildContext context) =>
     MediaQuery.of(context).size.width > 600 ? true : false;

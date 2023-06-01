@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myfoody/src/constants/constants.dart';
 
 class AppThemes {
+  static bool isDarkTheme(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark;
+  }
+
   static ThemeData get darkTheme {
     return ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
       brightness: Brightness.dark,
-      fontFamily: AppTypography.fm.fontFamily,
+      fontFamily: GoogleFonts.nunito().fontFamily,
       scaffoldBackgroundColor: AppColors.blackDarker,
       textTheme: TextThemes.darkTextTheme.apply(displayColor: AppColors.white),
       primaryTextTheme: TextThemes.primaryTextTheme,
@@ -41,7 +46,7 @@ class AppThemes {
       primaryColor: AppColors.getMaterialColorFromColor(AppColors.white),
       textTheme: TextThemes.textTheme
           .apply(bodyColor: AppColors.black, displayColor: AppColors.black),
-      fontFamily: AppTypography.fm.fontFamily,
+      fontFamily: GoogleFonts.nunito().fontFamily,
       shadowColor: AppColors.whiteShadow,
       primaryTextTheme: TextThemes.primaryTextTheme,
       iconTheme: const IconThemeData(color: AppColors.black),
