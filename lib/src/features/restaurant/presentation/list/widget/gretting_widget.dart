@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:myfoody/src/constants/constants.dart';
 
 class GreetingWidget extends StatelessWidget {
   const GreetingWidget({
@@ -14,7 +16,7 @@ class GreetingWidget extends StatelessWidget {
       from: 20.0,
       duration: const Duration(milliseconds: 500),
       child: Container(
-        margin: const EdgeInsets.all(24.0),
+        margin: EdgeInsets.symmetric(vertical: 12.h, horizontal: 22.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +31,7 @@ class GreetingWidget extends StatelessWidget {
                           : 'Selamat Malam  🍗',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            const SizedBox(height: 14.0),
+            Gap.h12,
             Text(
               'Telusuri Restoran Favoritmu',
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(

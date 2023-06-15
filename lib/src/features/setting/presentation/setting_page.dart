@@ -8,14 +8,12 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppSizes.h96),
-        child: AppBarWidget(
-          children: [
-            Text("Settings",
-                style: Theme.of(context).appBarTheme.toolbarTextStyle),
-          ],
-        ),
+      appBar: AppBarWidget(
+        size: AppSizes.h96,
+        children: [
+          Text("Settings",
+              style: Theme.of(context).appBarTheme.toolbarTextStyle),
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),

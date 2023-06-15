@@ -8,15 +8,12 @@ class RestaurantFavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppSizes.h96),
-        child: AppBarWidget(children: [
-          Text(
-            "Favorite",
-            style: Theme.of(context).appBarTheme.toolbarTextStyle,
-          )
-        ]),
-      ),
+      appBar: AppBarWidget(size: AppSizes.h96, children: [
+        Text(
+          "Favorite",
+          style: Theme.of(context).appBarTheme.toolbarTextStyle,
+        )
+      ]),
       body: const Center(
         child: Text("Favorite"),
       ),
