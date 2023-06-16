@@ -89,37 +89,6 @@ class _MainAppState extends ConsumerState<MainApp> {
         },
       ),
     );
-    // return GestureDetector(
-    //   onTap: () {
-    //     FocusManager.instance.primaryFocus?.unfocus();
-    //   },
-    //   child: ScreenUtilInit(
-    //     designSize: Size(widthBase, heightBase),
-    //     minTextAdapt: true,
-    //     builder: (context, child) {
-    //       return MaterialApp.router(
-    //         title: 'My Foody',
-
-    //         debugShowCheckedModeBanner: false,
-    //         routerDelegate: router.routerDelegate,
-    //         routeInformationParser: router.routeInformationParser,
-    //         routeInformationProvider: router.routeInformationProvider,
-    //         builder: (context, child) {
-    //           // setupScreenUtil(context);
-    //           return MediaQuery(
-    //             data: MediaQuery.of(context).copyWith(
-    //               textScaleFactor: 1.0,
-    //             ),
-    //             child: ScrollConfiguration(
-    //               behavior: MyBehavior(),
-    //               child: child!,
-    //             ),
-    //           );
-    //         },
-    //       );
-    //     },
-    //   ),
-    // );
   }
 }
 

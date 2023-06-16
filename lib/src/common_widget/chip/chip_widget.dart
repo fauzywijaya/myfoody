@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/shared/shared.dart';
 
 class ChipWidget extends StatelessWidget {
@@ -25,7 +24,7 @@ class ChipWidget extends StatelessWidget {
         left: isFirst ? setWidth(leftMargin) : 0,
       ),
       decoration: BoxDecoration(
-        color: AppColors.darkGrey,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Material(

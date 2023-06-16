@@ -15,7 +15,8 @@ class AppThemes {
       scaffoldBackgroundColor: AppColors.blackDarker,
       textTheme: TextThemes.darkTextTheme.apply(displayColor: AppColors.white),
       primaryTextTheme: TextThemes.primaryTextTheme,
-      primaryColor: AppColors.getMaterialColorFromColor(AppColors.darkGrey),
+      primaryColor:
+          AppColors.getMaterialColorFromColor(AppColors.blackDarker).shade400,
       shadowColor: AppColors.black,
       appBarTheme: AppBarTheme(
         elevation: 0.0,
@@ -50,7 +51,9 @@ class AppThemes {
       fontFamily: GoogleFonts.nunito().fontFamily,
       shadowColor: AppColors.whiteShadow,
       primaryTextTheme: TextThemes.primaryTextTheme,
-      iconTheme: const IconThemeData(color: AppColors.black),
+      iconTheme: const IconThemeData(
+        color: AppColors.black,
+      ),
       colorScheme: const ColorScheme.light().copyWith(
         primary: AppColors.white,
         onPrimary: Colors.grey[300],
@@ -61,12 +64,14 @@ class AppThemes {
         elevation: 0,
         backgroundColor: AppColors.white,
         titleTextStyle: AppTypography.titleMd,
-        toolbarTextStyle: TextThemes.textTheme.headlineSmall,
+        toolbarTextStyle: TextThemes.textTheme.headlineSmall?.copyWith(
+          color: AppColors.black,
+        ),
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.white,
         selectedItemColor: AppColors.lightBlue,
-        unselectedItemColor: Colors.grey[200],
+        unselectedItemColor: AppColors.lightGrey,
       ),
     );
   }
