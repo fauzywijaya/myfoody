@@ -15,8 +15,8 @@ class AppThemes {
       scaffoldBackgroundColor: AppColors.blackDarker,
       textTheme: TextThemes.darkTextTheme.apply(displayColor: AppColors.white),
       primaryTextTheme: TextThemes.primaryTextTheme,
-      primaryColor:
-          AppColors.getMaterialColorFromColor(AppColors.blackDarker).shade400,
+      primaryColor: AppColors.darkerGrey,
+      // primarySwatch: ,
       shadowColor: AppColors.black,
       appBarTheme: AppBarTheme(
         elevation: 0.0,

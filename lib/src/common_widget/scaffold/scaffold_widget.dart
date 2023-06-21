@@ -59,7 +59,7 @@ class _ScaffoldWidgetState extends State<ScaffoldWidget>
               elevation: 0.0,
               titleSpacing: 24.0,
               centerTitle: false,
-              automaticallyImplyLeading: false,
+              automaticallyImplyLeading: true,
               toolbarHeight: AppSizes.h96,
               backgroundColor: _backgroundColorTween.value,
               systemOverlayStyle: SystemUiOverlayStyle(

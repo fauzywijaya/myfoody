@@ -18,7 +18,8 @@ class AppColors {
   static const Color lightBlue = Color(0xff50C9FF);
   static const Color lightRed = Color(0xffFC698C);
   static const Color lightGrey = Color(0xFFF5F5F1);
-  static const Color darkGrey = Color(0xFF252525);
+  static const Color darkerGrey = Color.fromARGB(255, 33, 33, 34);
+  static const Color darkGrey = Color.fromARGB(255, 29, 29, 31);
   static const Color darkRed = Color(0xFFB81D24);
 
   /// Returns a shade of a [Color] from a double value

@@ -30,9 +30,23 @@ final goRouterProvider = Provider<GoRouter>(
         GoRoute(
           path: '/home',
           name: Routes.home.name,
-          pageBuilder: (context, state) =>
-              _navigate(context, state, const HomePage()),
+          pageBuilder: (context, state) => _navigate(
+            context,
+            state,
+            const HomePage(),
+          ),
         ),
+
+        GoRoute(
+          path: '/search',
+          name: Routes.search.name,
+          pageBuilder: (context, state) => _navigate(
+            context,
+            state,
+            const RestaurantSearchPage(),
+          ),
+        )
+        //
       ],
       errorBuilder: (context, state) => ErrorPage(
         error: state.error,

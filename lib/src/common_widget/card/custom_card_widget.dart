@@ -1,18 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/shared/shared.dart';
 
 class CustomCardWidget extends StatelessWidget {
+  final VoidCallback onTap;
+  final String imageUrl;
+  final String name;
+  final String description;
+  final String location;
+  final String rating;
+
   const CustomCardWidget({
-    super.key,
-  });
+    Key? key,
+    required this.onTap,
+    required this.imageUrl,
+    required this.name,
+    required this.description,
+    required this.location,
+    required this.rating,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 12.h, horizontal: 22.w),
         decoration: BoxDecoration(
@@ -40,12 +55,12 @@ class CustomCardWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(15.r),
                       child: FittedBox(
                         child: CachedNetworkImage(
-                          imageUrl: "https://picsum.photos/200/300",
-                          height: 80.h,
-                          width: 80.w,
+                          imageUrl: imageUrl.getMediumPicture,
+                          height: 75.h,
+                          width: 75.w,
                           fit: BoxFit.cover,
                           progressIndicatorBuilder: (context, url, download) {
                             return Padding(
@@ -73,7 +88,7 @@ class CustomCardWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Restuarant Name",
+                          name,
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge
@@ -82,7 +97,7 @@ class CustomCardWidget extends StatelessWidget {
                         ),
                         Gap.h8,
                         Text(
-                          "Restuara  sada d asdd nt Descrip sdtionsadasda ass asdda sasd asddsadsa",
+                          description,
                           style: Theme.of(context).textTheme.titleMedium,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -122,14 +137,8 @@ class CustomCardWidget extends StatelessWidget {
                         ),
                       ),
                       Gap.w16,
-                      Text(
-                        "4.5",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontSize: setFontSize(
-                                16,
-                              ),
-                            ),
-                      ),
+                      Text(rating,
+                          style: Theme.of(context).textTheme.titleMedium),
                     ],
                   ),
                   Gap.w24,
@@ -152,14 +161,10 @@ class CustomCardWidget extends StatelessWidget {
                       ),
                       Gap.w16,
                       Text(
-                        "Location Restaurant",
+                        location,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontSize: setFontSize(
-                                16,
-                              ),
-                            ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
                   ),

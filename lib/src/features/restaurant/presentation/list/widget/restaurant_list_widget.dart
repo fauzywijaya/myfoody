@@ -1,9 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
+import 'package:myfoody/src/features/domain.dart';
 
 class RestaurantListWidget extends StatelessWidget {
-  const RestaurantListWidget({super.key});
+  final List<Restaurant> restaurantItems;
+  const RestaurantListWidget({Key? key, required this.restaurantItems})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +14,19 @@ class RestaurantListWidget extends StatelessWidget {
       from: 20.0,
       duration: const Duration(milliseconds: 500),
       child: ListView.builder(
-        shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 10,
+        shrinkWrap: true,
+        itemCount: restaurantItems.length,
         itemBuilder: (context, index) {
-          return const CustomCardWidget();
+          final item = restaurantItems[index];
+          return CustomCardWidget(
+            onTap: () {},
+            imageUrl: item.pictureId,
+            name: item.name,
+            description: item.description,
+            location: item.city,
+            rating: item.rating,
+          );
         },
       ),
     );

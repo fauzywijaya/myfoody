@@ -6,4 +6,5 @@ extension XBuildContext on BuildContext {
   double screenWidthPercentage(double percentage) => screenWidth * percentage;
   double get screenHeight => mediaQuery.size.height;
   double screenHeightPercentage(double percentage) => screenHeight * percentage;
+  ThemeData get theme => Theme.of(this);
 }
