@@ -21,6 +21,21 @@ class RestaurantService {
       },
     );
   }
+
+  Future<Result<RestaurantSearch>> getRestaurantSearch(
+      {required String query}) async {
+    final result =
+        await _restaurantRepository.getRestaurantSearch(query: query);
+    return result.when(
+      success: (data) {
+        final restaurantSearch = RestaurantMapper.mapToRestaurantSearch(data);
+        return Result.success(restaurantSearch);
+      },
+      failure: (error, stackTrace) {
+        return Result.failure(error, stackTrace);
+      },
+    );
+  }
 }
 
 final restaurantServiceProvider = Provider<RestaurantService>((ref) {

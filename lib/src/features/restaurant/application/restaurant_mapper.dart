@@ -17,4 +17,20 @@ class RestaurantMapper {
           .toList(),
     );
   }
+
+  static RestaurantSearch mapToRestaurantSearch(RestaurantSearchResponse data) {
+    return RestaurantSearch(
+      founded: data.founded,
+      restaurants: data.restaurants
+          ?.map((item) => Restaurant(
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                pictureId: item.pictureId,
+                city: item.city,
+                rating: item.rating.toString(),
+              ))
+          .toList(),
+    );
+  }
 }

@@ -20,5 +20,8 @@ export 'restaurant/presentation/favorite/restaurant_favorite_page.dart';
 
 // *RESTAURANT - SEARCH
 export 'restaurant/presentation/search/restaurant_search_page.dart';
+export 'restaurant/presentation/search/restaurant_search_state.dart';
+export 'restaurant/presentation/search/restaurant_search_controller.dart';
+
 // *SETTING
 export 'setting/presentation/setting_page.dart';

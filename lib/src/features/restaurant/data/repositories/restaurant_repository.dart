@@ -17,6 +17,18 @@ class RestaurantRepository {
           NetworkExceptions.getDioExceptions(error), stackTrace);
     }
   }
+
+  Future<Result<RestaurantSearchResponse>> getRestaurantSearch(
+      {required String query}) async {
+    try {
+      final response = await _dioClient
+          .get(Endpoints.restaurantSearch, queryParameters: {'q': query});
+      return Result.success(RestaurantSearchResponse.fromJson(response));
+    } catch (error, stackTrace) {
+      return Result.failure(
+          NetworkExceptions.getDioExceptions(error), stackTrace);
+    }
+  }
 }
 
 final restuarantRepositoryProvider = Provider<RestaurantRepository>((ref) {

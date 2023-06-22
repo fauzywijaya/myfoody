@@ -35,17 +35,19 @@ final goRouterProvider = Provider<GoRouter>(
             state,
             const HomePage(),
           ),
+          routes: [
+            GoRoute(
+              path: 'search',
+              name: Routes.search.name,
+              pageBuilder: (context, state) => _navigate(
+                context,
+                state,
+                const RestaurantSearchPage(),
+              ),
+            )
+          ],
         ),
 
-        GoRoute(
-          path: '/search',
-          name: Routes.search.name,
-          pageBuilder: (context, state) => _navigate(
-            context,
-            state,
-            const RestaurantSearchPage(),
-          ),
-        )
         //
       ],
       errorBuilder: (context, state) => ErrorPage(

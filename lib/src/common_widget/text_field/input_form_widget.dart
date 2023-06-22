@@ -2,23 +2,42 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:myfoody/src/constants/constants.dart';
+
+enum InputFormType {
+  normal,
+  search,
+}
 
 class InputFormWidget extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final InputFormType type;
   final Function(String value)? onChanged;
   final VoidCallback? onTap;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   const InputFormWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     this.onChanged,
     this.onTap,
-    this.prefixIcon,
-    this.suffixIcon,
-  }) : super(key: key);
+  })  : type = InputFormType.normal,
+        prefixIcon = null,
+        suffixIcon = null;
+
+  const InputFormWidget.search(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.onChanged,
+      this.onTap,
+      this.suffixIcon,
+      this.prefixIcon})
+      : type = InputFormType.search;
+
+  bool get isSearch => type == InputFormType.search;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +60,12 @@ class InputFormWidget extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(15.0),
         ),
-        prefixIcon: Icon(
-          prefixIcon,
-          color: Colors.grey[500]!,
-        ),
+        prefixIcon: isSearch
+            ? Icon(
+                prefixIcon,
+                color: Colors.grey[500]!,
+              )
+            : null,
         suffixIcon: controller.text.isNotEmpty
             ? GestureDetector(
                 onTap: () {
@@ -52,12 +73,12 @@ class InputFormWidget extends StatelessWidget {
                 },
                 child: Icon(
                   suffixIcon,
-                  color: Colors.grey[500]!,
+                  color: AppColors.red,
                 ),
               )
             : null,
       ),
-      onChanged: (query) {},
+      onChanged: onChanged,
     );
   }
 }
