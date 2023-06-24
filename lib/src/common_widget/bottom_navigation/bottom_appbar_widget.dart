@@ -28,7 +28,7 @@ class BottomAppBarWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BottomAppBarWidgetState createState() => _BottomAppBarWidgetState();
+  State<BottomAppBarWidget> createState() => _BottomAppBarWidgetState();
 }
 
 class _BottomAppBarWidgetState extends State<BottomAppBarWidget>
@@ -233,5 +233,19 @@ class _BottomAppBarWidgetState extends State<BottomAppBarWidget>
         ),
       ],
     );
+  }
+}
+
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

@@ -6,13 +6,13 @@ class ChipWidget extends StatelessWidget {
   final String name;
   final bool isFirst;
   final double leftMargin;
-  final VoidCallback onClick;
+  final Function()? onTap;
   const ChipWidget({
     Key? key,
     required this.name,
     required this.isFirst,
     this.leftMargin = 22,
-    required this.onClick,
+    required this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ChipWidget extends StatelessWidget {
         type: MaterialType.transparency,
         color: Colors.amber,
         child: InkWell(
-          onTap: () => onClick(),
+          onTap: onTap,
           borderRadius: BorderRadius.circular(5),
           child: Padding(
             padding: EdgeInsets.symmetric(

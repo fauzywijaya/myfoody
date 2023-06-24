@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/features/application.dart';
 import 'package:myfoody/src/features/presentation.dart';
@@ -7,6 +8,8 @@ class RestaurantSearchController extends StateNotifier<RestaurantSearchState> {
 
   RestaurantSearchController(this._restaurantServices)
       : super(RestaurantSearchState());
+
+  final queryTextController = TextEditingController();
 
   Future<void> searchRestaurant({required String query}) async {
     state = state.copyWith(searchValue: const AsyncLoading());
@@ -33,9 +36,8 @@ class RestaurantSearchController extends StateNotifier<RestaurantSearchState> {
   }
 }
 
-final restaurantSearchControllerProvider =
-    StateNotifierProvider<RestaurantSearchController, RestaurantSearchState>(
-        (ref) {
+final restaurantSearchControllerProvider = StateNotifierProvider.autoDispose<
+    RestaurantSearchController, RestaurantSearchState>((ref) {
   final restaurantService = ref.watch(restaurantServiceProvider);
   return RestaurantSearchController(restaurantService);
 });

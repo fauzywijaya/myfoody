@@ -4,12 +4,15 @@ import 'package:go_router/go_router.dart';
 import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/routes/routes.dart';
 
+import '../constants/keys/extras_key.dart';
+
 enum Routes {
   onboarding,
   splash,
   home,
   detail,
   search,
+  city,
 }
 
 final goRouterProvider = Provider<GoRouter>(
@@ -37,18 +40,25 @@ final goRouterProvider = Provider<GoRouter>(
           ),
           routes: [
             GoRoute(
-              path: 'search',
-              name: Routes.search.name,
-              pageBuilder: (context, state) => _navigate(
-                context,
-                state,
-                const RestaurantSearchPage(),
-              ),
-            )
+                path: 'search',
+                name: Routes.search.name,
+                builder: (context, state) => const RestaurantSearchPage()),
+            GoRoute(
+              path: 'city',
+              name: Routes.city.name,
+              builder: (context, state) {
+                final extras = state.extra as Extras;
+                final city = extras.datas[ExtrasKey.city] as String;
+                return RestaurantListCityPage(city: city);
+              },
+            ),
+            GoRoute(
+              path: 'detail',
+              name: Routes.detail.name,
+              builder: (context, state) => const RestaurantDetailPage(),
+            ),
           ],
         ),
-
-        //
       ],
       errorBuilder: (context, state) => ErrorPage(
         error: state.error,

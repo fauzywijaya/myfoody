@@ -34,8 +34,9 @@ class RestaurantListController extends StateNotifier<RestaurantListState> {
     final result = await _restaurantService.getRestaurantList();
     result.when(
       success: (data) {
-        final cities =
-            data.restaurants.map((e) => e.city).toList().toSet().toList();
+        final cities = data.restaurants.map((e) => e.city).toSet().toList()
+          ..sort((a, b) => a.compareTo(b));
+
         state = state.copyWith(
           cityValue: AsyncData(cities),
           city: cities,
@@ -47,6 +48,33 @@ class RestaurantListController extends StateNotifier<RestaurantListState> {
         );
       },
     );
+  }
+
+  void festchRestaurantByCity({required String city}) async {
+    state = state.copyWith(restaurantByCityValue: const AsyncLoading());
+    // if (state.restaurants == null) {
+    //   return fetchRestaurantList();
+    // }
+
+    try {
+      final restaurantByCity = state.restaurants?.restaurants
+          .where((item) => item.city.toLowerCase() == city.toLowerCase())
+          .toList();
+      state = state.copyWith(
+        restaurantByCityValue: AsyncData(restaurantByCity),
+        restaurantByCity: restaurantByCity,
+      );
+    } catch (error, stackTrace) {
+      state = state.copyWith(
+        restaurantByCityValue: AsyncError(error, stackTrace),
+      );
+    }
+
+    // final result = await _restaurantService.getRestaurantList();
+    // result.when(
+    //   success: (data) {},
+    //   failure: (error, stackTrace) {},
+    // );
   }
 }
 
