@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/features/presentation.dart';
@@ -21,21 +20,9 @@ class _RestaurantSearchPageState extends ConsumerState<RestaurantSearchPage> {
     //     InheritedDataProvider.of(context).scrollController;
     return ScaffoldWidget(
       appBar: [
-        Expanded(
+        const Expanded(
           flex: 1,
-          child: CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            radius: 24.0,
-            child: IconButton(
-              splashRadius: 4.0,
-              padding: EdgeInsets.zero,
-              icon: const Icon(Icons.arrow_back),
-              color: Theme.of(context).primaryIconTheme.color,
-              onPressed: () {
-                context.pop();
-              },
-            ),
-          ),
+          child: BackButtonWidget(),
         ),
         Gap.w16,
         Expanded(

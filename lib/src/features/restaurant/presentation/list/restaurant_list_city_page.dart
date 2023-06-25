@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/shared/extensions/extension.dart';
@@ -33,20 +32,9 @@ class _RestaurantListCityPageState
 
     return ScaffoldWidget(
       appBar: [
-        CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          radius: 24.0,
-          child: IconButton(
-            splashRadius: 4.0,
-            padding: EdgeInsets.zero,
-            icon: const Icon(Icons.arrow_back),
-            color: Theme.of(context).primaryIconTheme.color,
-            onPressed: () {
-              context.pop();
-            },
-          ),
-        ),
+        const BackButtonWidget(),
         Text(widget.city, style: Theme.of(context).textTheme.headlineMedium),
+        const SizedBox.shrink()
       ],
       body: SingleChildScrollView(
         child: Column(

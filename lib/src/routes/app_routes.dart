@@ -21,7 +21,7 @@ final goRouterProvider = Provider<GoRouter>(
       navigatorKey: navigatorKey,
       debugLogDiagnostics: true,
       urlPathStrategy: UrlPathStrategy.path,
-      initialLocation: '/',
+      initialLocation: '/home/detail',
       routerNeglect: true,
       routes: [
         GoRoute(

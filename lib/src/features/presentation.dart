@@ -30,6 +30,9 @@ export 'restaurant/presentation/search/widget/widget.dart';
 
 // *RESTAURANT - DETAIL
 export 'restaurant/presentation/detail/restaurant_detail_page.dart';
+export 'restaurant/presentation/detail/restaurant_detail_state.dart';
+export 'restaurant/presentation/detail/restaurant_detail_controller.dart';
+export 'restaurant/presentation/detail/widget/widget.dart';
 
 // *SETTING
 export 'setting/presentation/setting_page.dart';

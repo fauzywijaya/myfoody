@@ -1,5 +1,6 @@
 export 'scaffold/scaffold_widget.dart';
 export 'card/custom_card_widget.dart';
+export 'card/custom_back_button_widget.dart';
 export 'chip/chip_widget.dart';
 export 'bottom_navigation/bottom_appbar_widget.dart';
 export 'idle/idle.dart';

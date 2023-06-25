@@ -11,7 +11,7 @@ class ChipWidget extends StatelessWidget {
     Key? key,
     required this.name,
     required this.isFirst,
-    this.leftMargin = 22,
+    this.leftMargin = 0,
     required this.onTap,
   }) : super(key: key);
   @override

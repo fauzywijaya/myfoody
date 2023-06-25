@@ -29,6 +29,18 @@ class RestaurantRepository {
           NetworkExceptions.getDioExceptions(error), stackTrace);
     }
   }
+
+  Future<Result<RestaurantDetailResponse>> getRestaurantDetail(
+      {required String id}) async {
+    try {
+      final response = await _dioClient
+          .get(Endpoints.restaurantDetail.replaceFirst('{id}', id));
+      return Result.success(RestaurantDetailResponse.fromJson(response));
+    } catch (error, stackTrace) {
+      return Result.failure(
+          NetworkExceptions.getDioExceptions(error), stackTrace);
+    }
+  }
 }
 
 final restuarantRepositoryProvider = Provider<RestaurantRepository>((ref) {
