@@ -21,7 +21,7 @@ final goRouterProvider = Provider<GoRouter>(
       navigatorKey: navigatorKey,
       debugLogDiagnostics: true,
       urlPathStrategy: UrlPathStrategy.path,
-      initialLocation: '/home/detail',
+      initialLocation: '/',
       routerNeglect: true,
       routes: [
         GoRoute(
@@ -55,7 +55,12 @@ final goRouterProvider = Provider<GoRouter>(
             GoRoute(
               path: 'detail',
               name: Routes.detail.name,
-              builder: (context, state) => const RestaurantDetailPage(),
+              builder: (context, state) {
+                final extras = state.extra as Extras;
+                final restaurantId =
+                    extras.datas[ExtrasKey.restaurantId] as String;
+                return RestaurantDetailPage(restaurantId: restaurantId);
+              },
             ),
           ],
         ),

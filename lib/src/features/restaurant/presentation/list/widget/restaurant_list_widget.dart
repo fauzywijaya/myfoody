@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
+import 'package:myfoody/src/constants/keys/extras_key.dart';
 import 'package:myfoody/src/features/domain.dart';
 import 'package:myfoody/src/routes/routes.dart';
 
@@ -25,9 +26,11 @@ class RestaurantListWidget extends StatelessWidget {
             onTap: () {
               context.goNamed(
                 Routes.detail.name,
-                // params: {
-                //   Extras.restaurantId: item.id,
-                // },
+                extra: Extras(
+                  datas: {
+                    ExtrasKey.restaurantId: item.id,
+                  },
+                ),
               );
             },
             imageUrl: item!.pictureId,

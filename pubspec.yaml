@@ -26,7 +26,7 @@ dependencies:
   intl: ^0.18.1
   json_serializable: ^6.5.4
   lottie: ^2.3.2
-  modal_bottom_sheet: ^2.1.2
+  modal_bottom_sheet: ^3.0.0-pre
   pretty_dio_logger: ^1.1.1
   readmore: ^2.2.0
   rxdart: ^0.27.7

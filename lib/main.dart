@@ -66,7 +66,7 @@ class _MainAppState extends ConsumerState<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = ref.watch(themeProvider);
+    final isDarkTheme = ref.watch(themesProviders);
     final router = ref.read(goRouterProvider);
     return GestureDetector(
       onTap: () {
@@ -84,7 +84,7 @@ class _MainAppState extends ConsumerState<MainApp> {
             title: 'MyFlix',
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
-            themeMode: isDarkTheme ? ThemeMode.light : ThemeMode.dark,
+            themeMode: isDarkTheme,
           );
         },
       ),

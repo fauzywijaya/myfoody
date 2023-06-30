@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeModeState = ref.watch(themesProviders);
     return ScaffoldWidget(
       appBar: [
         Text("Settings", style: Theme.of(context).appBarTheme.toolbarTextStyle),
@@ -14,19 +16,23 @@ class SettingPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
         children: [
-          Material(
-            color: Colors.transparent,
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text("Dark Theme",
-                  style: Theme.of(context).textTheme.titleMedium),
-              trailing: Switch.adaptive(
-                  value: true,
-                  onChanged: (value) {},
-                  inactiveThumbColor: Theme.of(context).colorScheme.primary,
-                  activeColor: Theme.of(context).colorScheme.secondary),
-            ),
-          ),
+          Consumer(builder: (context, ref, child) {
+            return Material(
+              color: Colors.transparent,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text("Dark Theme",
+                    style: Theme.of(context).textTheme.titleMedium),
+                trailing: Switch.adaptive(
+                    value: themeModeState == ThemeMode.dark, //false or true
+                    onChanged: (value) {
+                      ref.read(themesProviders.notifier).changeTheme(value);
+                    },
+                    inactiveThumbColor: Theme.of(context).colorScheme.primary,
+                    activeColor: Theme.of(context).colorScheme.secondary),
+              ),
+            );
+          }),
           const Divider(),
           Material(
             color: Colors.transparent,

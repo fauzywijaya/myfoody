@@ -10,20 +10,22 @@ enum InputFormType {
 }
 
 class InputFormWidget extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String hintText;
   final InputFormType type;
   final Function(String value)? onChanged;
   final VoidCallback? onTap;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
-  const InputFormWidget({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    this.onChanged,
-    this.onTap,
-  })  : type = InputFormType.normal,
+  final int? maxLines;
+  const InputFormWidget(
+      {super.key,
+      this.controller,
+      required this.hintText,
+      this.onChanged,
+      this.onTap,
+      this.maxLines})
+      : type = InputFormType.normal,
         prefixIcon = null,
         suffixIcon = null;
 
@@ -35,7 +37,8 @@ class InputFormWidget extends StatelessWidget {
       this.onTap,
       this.suffixIcon,
       this.prefixIcon})
-      : type = InputFormType.search;
+      : type = InputFormType.search,
+        maxLines = 1;
 
   bool get isSearch => type == InputFormType.search;
 
@@ -45,6 +48,7 @@ class InputFormWidget extends StatelessWidget {
       controller: controller,
       textAlignVertical: TextAlignVertical.center,
       showCursor: true,
+      maxLines: maxLines,
       cursorColor: Theme.of(context).iconTheme.color,
       decoration: InputDecoration(
         hintText: hintText,
@@ -66,10 +70,10 @@ class InputFormWidget extends StatelessWidget {
                 color: Colors.grey[500]!,
               )
             : null,
-        suffixIcon: controller.text.isNotEmpty
+        suffixIcon: controller!.text.isNotEmpty
             ? GestureDetector(
                 onTap: () {
-                  controller.clear();
+                  controller!.clear();
                 },
                 child: Icon(
                   suffixIcon,

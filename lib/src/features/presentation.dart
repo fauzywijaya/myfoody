@@ -39,3 +39,6 @@ export 'setting/presentation/setting_page.dart';
 // export 'setting/presentation/setting_controller.dart';
 // export 'setting/presentation/setting_state.dart';
 // export 'setting/presentation/widget/widget.dart';
+
+// *REVIEW
+export 'review/presentation/add_review_page.dart';

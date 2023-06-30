@@ -11,7 +11,7 @@ class ChipWidget extends StatelessWidget {
     Key? key,
     required this.name,
     required this.isFirst,
-    this.leftMargin = 0,
+    this.leftMargin = 22,
     required this.onTap,
   }) : super(key: key);
   @override
@@ -19,8 +19,8 @@ class ChipWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(
         right: 20.w,
-        top: 20.h,
-        bottom: 20.h,
+        top: 8.h,
+        bottom: 8.h,
         left: isFirst ? setWidth(leftMargin) : 0,
       ),
       decoration: BoxDecoration(
