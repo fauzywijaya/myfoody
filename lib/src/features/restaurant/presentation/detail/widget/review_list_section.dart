@@ -65,7 +65,10 @@ class ReviewListSection extends StatelessWidget {
           text: 'Add Review',
           isEnabled: true,
           onTap: () {
-            showRegularBottomSheet(context, child: const AddReviewPage());
+            showRegularBottomSheet(context,
+                child: AddReviewPage(
+                  restaurantId: restaurantDetail.id,
+                ));
           },
         ),
       ],

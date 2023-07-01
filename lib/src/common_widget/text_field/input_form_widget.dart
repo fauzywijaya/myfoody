@@ -18,12 +18,14 @@ class InputFormWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final int? maxLines;
+  final String? Function(String?)? validator;
   const InputFormWidget(
       {super.key,
       this.controller,
       required this.hintText,
       this.onChanged,
       this.onTap,
+      this.validator,
       this.maxLines})
       : type = InputFormType.normal,
         prefixIcon = null,
@@ -36,6 +38,7 @@ class InputFormWidget extends StatelessWidget {
       required this.onChanged,
       this.onTap,
       this.suffixIcon,
+      this.validator,
       this.prefixIcon})
       : type = InputFormType.search,
         maxLines = 1;
@@ -50,6 +53,7 @@ class InputFormWidget extends StatelessWidget {
       showCursor: true,
       maxLines: maxLines,
       cursorColor: Theme.of(context).iconTheme.color,
+      validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
         isCollapsed: true,

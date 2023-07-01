@@ -42,3 +42,5 @@ export 'setting/presentation/setting_page.dart';
 
 // *REVIEW
 export 'review/presentation/add_review_page.dart';
+export 'review/presentation/add_review_state.dart';
+export 'review/presentation/add_review_controller.dart';

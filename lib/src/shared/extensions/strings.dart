@@ -5,4 +5,6 @@ extension XStrings on String {
       'https://restaurant-api.dicoding.dev/images/medium/$this';
   String get getLargePicture =>
       'https://restaurant-api.dicoding.dev/images/large/$this';
+
+  // String get isNullOrEmpty => isEmpty ? '' : this;
 }
