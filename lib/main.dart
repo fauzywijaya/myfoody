@@ -7,8 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/routes/app_routes.dart';
+import 'package:myfoody/src/services/storage/storage_helper.dart';
 
 void main() async {
+  await hiveInit();
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   runApp(

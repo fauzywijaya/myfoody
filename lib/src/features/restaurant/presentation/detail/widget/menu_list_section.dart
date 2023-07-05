@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/features/domain.dart';
+import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/shared/shared.dart';
 
-class MenuListDrinkSection extends StatelessWidget {
+class MenuListDrinkSection extends ConsumerWidget {
   const MenuListDrinkSection({
     super.key,
-    required this.restaurant,
   });
-  final RestaurantDetail restaurant;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(restaurantDetailProvider);
+    final restaurant = state.restaurantDetail!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +27,7 @@ class MenuListDrinkSection extends StatelessWidget {
         ),
         Gap.h8,
         SizedBox(
-          height: AppSizes.h40,
+          height: AppSizes.h64,
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -42,16 +43,15 @@ class MenuListDrinkSection extends StatelessWidget {
   }
 }
 
-class MenuListFoodSection extends StatelessWidget {
+class MenuListFoodSection extends ConsumerWidget {
   const MenuListFoodSection({
     super.key,
-    required this.restaurant,
   });
 
-  final RestaurantDetail restaurant;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(restaurantDetailProvider);
+    final restaurant = state.restaurantDetail!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class MenuListFoodSection extends StatelessWidget {
         ),
         Gap.h8,
         SizedBox(
-          height: AppSizes.h40,
+          height: AppSizes.h64,
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,

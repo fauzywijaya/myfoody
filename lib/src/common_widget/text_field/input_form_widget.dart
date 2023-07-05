@@ -2,7 +2,6 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:myfoody/src/constants/constants.dart';
 
 enum InputFormType {
   normal,
@@ -56,17 +55,16 @@ class InputFormWidget extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
-        isCollapsed: true,
+        isCollapsed: false,
         filled: true,
-        fillColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
-        contentPadding: const EdgeInsets.all(10.0),
+        fillColor: Theme.of(context).colorScheme.primary,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         prefixIcon: isSearch
             ? Icon(
@@ -74,17 +72,17 @@ class InputFormWidget extends StatelessWidget {
                 color: Colors.grey[500]!,
               )
             : null,
-        suffixIcon: controller!.text.isNotEmpty
-            ? GestureDetector(
-                onTap: () {
-                  controller!.clear();
-                },
-                child: Icon(
-                  suffixIcon,
-                  color: AppColors.red,
-                ),
-              )
-            : null,
+        // suffix: controller!.text.isNotEmpty
+        //     ? GestureDetector(
+        //         onTap: () {
+        //           controller!.clear();
+        //         },
+        //         child: Icon(
+        //           suffixIcon,
+        //           color: AppColors.red,
+        //         ),
+        //       )
+        //     : const SizedBox.shrink(),
       ),
       onChanged: onChanged,
     );

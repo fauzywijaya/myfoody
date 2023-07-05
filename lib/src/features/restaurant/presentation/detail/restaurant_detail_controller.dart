@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/features/application.dart';
 import 'package:myfoody/src/features/presentation.dart';
+import 'package:myfoody/src/services/storage/storage_service.dart';
 
 class RestaurantDetailController extends StateNotifier<RestaurantDetailState> {
   final RestaurantService _restaurantService;
-  RestaurantDetailController(this._restaurantService)
+  final StorageService _storageService;
+  RestaurantDetailController(this._restaurantService, this._storageService)
       : super(RestaurantDetailState());
 
   void fetchDetailRestaurant({required String restaurantId}) async {
@@ -15,11 +17,24 @@ class RestaurantDetailController extends StateNotifier<RestaurantDetailState> {
       state = state.copyWith(
         restaurantDetailValue: AsyncData(data),
         restaurantDetail: data,
+        isFavorite: _storageService.isRestaurantFavorite(data.id),
       );
     }, failure: (error, stackTrace) {
       state =
           state.copyWith(restaurantDetailValue: AsyncError(error, stackTrace));
     });
+  }
+
+  void toggleFavorite() {
+    if (state.isFavorite) {
+      _storageService.deleteFavoriteRestaurant(state.restaurantDetail!.id);
+    } else {
+      _storageService.saveFavoriteRestaurant(state.restaurantDetail!);
+    }
+
+    state = state.copyWith(
+        isFavorite:
+            _storageService.isRestaurantFavorite(state.restaurantDetail!.id));
   }
 }
 
@@ -27,5 +42,6 @@ final restaurantDetailProvider =
     StateNotifierProvider<RestaurantDetailController, RestaurantDetailState>(
         (ref) {
   final restaurantService = ref.read(restaurantServiceProvider);
-  return RestaurantDetailController(restaurantService);
+  final storageService = ref.read(storageServiceProvider);
+  return RestaurantDetailController(restaurantService, storageService);
 });

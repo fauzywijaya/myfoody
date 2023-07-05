@@ -28,52 +28,37 @@ class _CitiesListWidgetState extends ConsumerState<CitiesListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      if (state.cityValue.hasError) {
-        return const Center(
-          child: Text('Error'),
-        );
-      } else if (state.isLoadingCity) {
-        return const LoadingChipHorizontal();
-      } else if (state.city.isEmpty) {
-        return const Center(
-          child: Text(
-            'You haven\'t Favorites any movie, favorite your movie first',
-          ),
-        );
-      }
-      return FadeInUp(
-        from: 20.0,
-        duration: const Duration(milliseconds: 500),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: state.city
-                .asMap()
-                .map(
-                  (index, value) => MapEntry(
-                    index,
-                    ChipWidget(
-                      name: value!,
-                      isFirst: index == 0,
-                      onTap: () {
-                        context.pushNamed(
-                          Routes.city.name,
-                          extra: Extras(
-                            datas: {
-                              ExtrasKey.city: value,
-                            },
-                          ),
-                        );
-                      },
-                    ),
+    return FadeInUp(
+      from: 20.0,
+      duration: const Duration(milliseconds: 500),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: state.city
+              .asMap()
+              .map(
+                (index, value) => MapEntry(
+                  index,
+                  ChipWidget(
+                    name: value!,
+                    isFirst: index == 0,
+                    onTap: () {
+                      context.pushNamed(
+                        Routes.city.name,
+                        extra: Extras(
+                          datas: {
+                            ExtrasKey.city: value,
+                          },
+                        ),
+                      );
+                    },
                   ),
-                )
-                .values
-                .toList(),
-          ),
+                ),
+              )
+              .values
+              .toList(),
         ),
-      );
-    });
+      ),
+    );
   }
 }

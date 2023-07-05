@@ -18,8 +18,8 @@ export 'restaurant/presentation/list/widget/widget.dart';
 
 // *RESTAURANT - FAVORITE
 export 'restaurant/presentation/favorite/restaurant_favorite_page.dart';
-// export 'restaurant/presentation/favorite/restaurant_favorite_state.dart';
-// export 'restaurant/presentation/favorite/restaurant_favorite_controller.dart';
+export 'restaurant/presentation/favorite/restaurant_favorite_state.dart';
+export 'restaurant/presentation/favorite/restaurant_favorite_controller.dart';
 // export 'restaurant/presentation/favorite/widget/widget.dart';
 
 // *RESTAURANT - SEARCH

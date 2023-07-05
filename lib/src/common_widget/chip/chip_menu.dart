@@ -33,12 +33,11 @@ class ChipMenu extends StatelessWidget {
         type: MaterialType.transparency,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: setWidth(10),
+            horizontal: setWidth(30),
             vertical: setHeight(5),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(

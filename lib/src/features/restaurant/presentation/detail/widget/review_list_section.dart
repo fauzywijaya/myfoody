@@ -1,21 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 
-import 'package:myfoody/src/features/domain.dart';
 import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/shared/shared.dart';
 
-class ReviewListSection extends StatelessWidget {
+class ReviewListSection extends ConsumerWidget {
   const ReviewListSection({
     Key? key,
-    required this.restaurantDetail,
   }) : super(key: key);
 
-  final RestaurantDetail restaurantDetail;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(restaurantDetailProvider);
+    final restaurantDetail = state.restaurantDetail!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

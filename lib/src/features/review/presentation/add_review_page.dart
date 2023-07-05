@@ -38,7 +38,7 @@ class AddReviewPage extends ConsumerWidget {
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
           padding: const EdgeInsets.all(20),
-          color: AppColors.darkGrey,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: SafeArea(
             top: false,
             child: Form(

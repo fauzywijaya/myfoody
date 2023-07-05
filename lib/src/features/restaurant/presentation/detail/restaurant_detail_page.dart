@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:myfoody/src/common_widget/async_value/async_value_widget.dart';
 
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
@@ -34,49 +35,60 @@ class _RestaurantDetailPageState extends ConsumerState<RestaurantDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWidget(
-      appBar: [
-        const BackButtonWidget(),
-        Text(
-          state.restaurantDetail?.name ?? '',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.favorite_border_rounded),
-          splashRadius: 24.0,
-          splashColor: Colors.grey[200],
-          padding: EdgeInsets.zero,
-          iconSize: 24.0,
-        )
-      ],
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 22.w,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ImageDetailSection(
-                imageUrl: state.restaurantDetail!.pictureId,
+    return AsyncValueWidget(
+        value: state.restaurantDetailValue,
+        data: (data) {
+          return ScaffoldWidget(
+            appBar: [
+              const BackButtonWidget(),
+              Text(
+                state.restaurantDetail?.name ?? '',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              Gap.h8,
-              InfoBasicSection(
-                restaurantDetail: state.restaurantDetail!,
-              ),
-              Gap.h8,
-              MenuListFoodSection(restaurant: state.restaurantDetail!),
-              Gap.h8,
-              MenuListDrinkSection(restaurant: state.restaurantDetail!),
-              Gap.h8,
-              ReviewListSection(restaurantDetail: state.restaurantDetail!),
-              Gap.h8,
+              IconButton(
+                onPressed: () {
+                  controller.toggleFavorite();
+                },
+                icon: state.isFavorite
+                    ? const Icon(
+                        Icons.favorite_rounded,
+                        color: AppColors.lightRed,
+                      )
+                    : const Icon(
+                        Icons.favorite_border_rounded,
+                        color: AppColors.grey,
+                      ),
+                splashRadius: 24.0,
+                splashColor:
+                    state.isFavorite ? AppColors.lightRed : AppColors.lightGrey,
+                padding: EdgeInsets.zero,
+                iconSize: 24.0,
+              )
             ],
-          ),
-        ),
-      ),
-    );
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 22.w,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ImageDetailSection(),
+                    Gap.h8,
+                    const InfoBasicSection(),
+                    Gap.h8,
+                    const MenuListFoodSection(),
+                    Gap.h8,
+                    const MenuListDrinkSection(),
+                    Gap.h8,
+                    const ReviewListSection(),
+                    Gap.h8,
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

@@ -1,27 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:myfoody/src/features/presentation.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:myfoody/src/common_widget/chip/chip_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/features/domain.dart';
 
-class InfoBasicSection extends StatelessWidget {
-  final RestaurantDetail restaurantDetail;
+class InfoBasicSection extends ConsumerWidget {
   const InfoBasicSection({
     Key? key,
-    required this.restaurantDetail,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(restaurantDetailProvider);
+    final details = state.restaurantDetail;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: restaurantDetail.categories
+          children: details!.categories
               .asMap()
               .map(
                 (index, value) => MapEntry(
@@ -39,7 +41,7 @@ class InfoBasicSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(restaurantDetail.name,
+            Text(details.name,
                 style: Theme.of(context).primaryTextTheme.headlineMedium),
             Row(
               children: [
@@ -59,7 +61,7 @@ class InfoBasicSection extends StatelessWidget {
                   ),
                 ),
                 Gap.w16,
-                Text(restaurantDetail.rating.toString(),
+                Text(details.rating.toString(),
                     style: Theme.of(context).textTheme.titleMedium),
               ],
             ),
@@ -85,7 +87,7 @@ class InfoBasicSection extends StatelessWidget {
             ),
             Gap.w16,
             Text(
-              "${restaurantDetail.city}, ${restaurantDetail.address}",
+              "${details.city}, ${details.address}",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleMedium,
@@ -94,13 +96,14 @@ class InfoBasicSection extends StatelessWidget {
         ),
         Gap.h8,
         ReadMoreText(
-          restaurantDetail.description,
+          details.description,
           trimLines: 5,
           trimMode: TrimMode.Line,
           trimCollapsedText: 'Tampilkan lebih banyak',
           trimExpandedText: 'Tampilkan lebih sedikit',
           textAlign: TextAlign.justify,
-          colorClickableText: Theme.of(context).colorScheme.secondary,
+          colorClickableText:
+              Theme.of(context).primaryTextTheme.bodyLarge!.color,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
