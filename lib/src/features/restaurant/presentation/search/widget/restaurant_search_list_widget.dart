@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:myfoody/src/common_widget/async_value/async_value_widget.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
-import 'package:myfoody/src/constants/keys/extras_key.dart';
 import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/routes/routes.dart';
 

@@ -1,18 +1,35 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myfoody/src/constants/constants.dart';
+import 'package:myfoody/src/features/setting/presentation/setting_controller.dart';
 import 'package:myfoody/src/routes/app_routes.dart';
+import 'package:myfoody/src/services/services.dart';
 import 'package:myfoody/src/services/storage/storage_helper.dart';
+import 'package:myfoody/src/shared/shared.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 void main() async {
   await hiveInit();
-  WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+  WidgetsFlutterBinding.ensureInitialized();
+  final container = ProviderContainer();
+  final notificationHelper = container.read(notificationProvider);
+  final BackgroundService service = BackgroundService();
+  service.initializeIsolate();
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
   runApp(
     const ProviderScope(
       child: MainApp(),
@@ -68,7 +85,7 @@ class _MainAppState extends ConsumerState<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = ref.watch(themesProviders);
+    final isDarkTheme = ref.watch(settingControllerProvider);
     final router = ref.read(goRouterProvider);
     return GestureDetector(
       onTap: () {
@@ -86,7 +103,7 @@ class _MainAppState extends ConsumerState<MainApp> {
             title: 'MyFlix',
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
-            themeMode: isDarkTheme,
+            themeMode: isDarkTheme.theme ? ThemeMode.dark : ThemeMode.light,
           );
         },
       ),

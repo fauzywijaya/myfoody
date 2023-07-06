@@ -9,20 +9,23 @@ class RestaurantFavoriteController
   RestaurantFavoriteController(this._storageService)
       : super(const RestaurantFavoriteState());
 
-  void getAllFavoriteRestaurant() {
-    state = state.copyWith(favoriteRestaurantsValue: const AsyncLoading());
-    final result = _storageService.getAllFavorite();
+  void getFavoriteMovies() async {
+    state = state.copyWith(
+      favoriteRestaurantsValue: const AsyncLoading(),
+    );
+
+    final result = _storageService.getAllFavoriteMovies();
     result.when(
       success: (data) {
-        // print();
         state = state.copyWith(
-          favoriteRestaurantsValue: AsyncData(data),
           favoriteRestaurants: data,
+          favoriteRestaurantsValue: AsyncData(data),
         );
       },
       failure: (error, stackTrace) {
         state = state.copyWith(
-            favoriteRestaurantsValue: AsyncError(error, stackTrace));
+          favoriteRestaurantsValue: AsyncError(error, stackTrace),
+        );
       },
     );
   }

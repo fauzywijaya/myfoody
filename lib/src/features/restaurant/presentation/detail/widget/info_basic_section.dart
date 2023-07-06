@@ -7,7 +7,6 @@ import 'package:readmore/readmore.dart';
 
 import 'package:myfoody/src/common_widget/chip/chip_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
-import 'package:myfoody/src/features/domain.dart';
 
 class InfoBasicSection extends ConsumerWidget {
   const InfoBasicSection({

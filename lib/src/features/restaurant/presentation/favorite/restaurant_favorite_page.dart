@@ -25,7 +25,7 @@ class _RestaurantFavoritePageState
 
   @override
   void didChangeDependencies() {
-    safeRebuild(() => controller.getAllFavoriteRestaurant());
+    safeRebuild(() => controller.getFavoriteMovies());
     super.didChangeDependencies();
   }
 
@@ -66,6 +66,7 @@ class _RestaurantFavoritePageState
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
+              controller: scrollController,
               itemCount: state.favoriteRestaurants.length,
               itemBuilder: (context, index) {
                 final item = state.favoriteRestaurants[index];
@@ -80,7 +81,7 @@ class _RestaurantFavoritePageState
                       ),
                     );
                   },
-                  imageUrl: item.pictureId.getSmallPicture,
+                  imageUrl: item.pictureId,
                   name: item.name,
                   description: item.description,
                   location: item.city,

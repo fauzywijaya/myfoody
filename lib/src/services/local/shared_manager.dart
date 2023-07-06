@@ -17,7 +17,7 @@ class SharedManager<T> {
     return null;
   }
 
-  Future story(String key, dynamic value) async {
+  Future store(String key, dynamic value) async {
     _prefs = await SharedPreferences.getInstance();
     var types = type<T>();
     switch (types) {

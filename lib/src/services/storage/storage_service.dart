@@ -9,7 +9,6 @@ class StorageService {
   final favoriteBox = Hive.box<String>(HiveKey.favoriteBox);
 
   Future<void> saveFavoriteRestaurant(RestaurantDetail restaurant) async {
-    print(restaurant.id);
     final restaurantJson = restaurant.toJson();
     return await favoriteBox.put(restaurant.id, restaurantJson);
   }
@@ -24,13 +23,26 @@ class StorageService {
 
   Result<List<RestaurantDetail>> getAllFavorite() {
     try {
-      return Result.success((favoriteBox.values).map<RestaurantDetail>((item) {
-        print(item);
-        return RestaurantDetail.fromJson(item);
-      }).toList());
+      return Result.success(
+        (favoriteBox.values).map<RestaurantDetail>((item) {
+          return RestaurantDetail.fromJson(item);
+        }).toList(),
+      );
     } catch (error, stackTrace) {
       return Result.failure(
           NetworkExceptions.getDioExceptions(error), stackTrace);
+    }
+  }
+
+  Result<List<RestaurantDetail>> getAllFavoriteMovies() {
+    try {
+      return Result.success(
+        (favoriteBox.values).map<RestaurantDetail>((item) {
+          return RestaurantDetail.fromJson(item);
+        }).toList(),
+      );
+    } catch (e, st) {
+      return Result.failure(NetworkExceptions.getDioExceptions(e), st);
     }
   }
 }

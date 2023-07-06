@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
-import 'package:myfoody/src/features/domain.dart';
 import 'package:myfoody/src/features/presentation.dart';
 import 'package:myfoody/src/shared/shared.dart';
 

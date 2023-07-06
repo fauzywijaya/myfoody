@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
             Gap.h12,
-            Text('MyFoody', style: Theme.of(context).textTheme.bodyLarge!),
+            Text('MyFoody', style: Theme.of(context).textTheme.headlineLarge!),
           ],
         ),
       ),
