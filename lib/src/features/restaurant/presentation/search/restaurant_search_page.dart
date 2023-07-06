@@ -16,8 +16,6 @@ class _RestaurantSearchPageState extends ConsumerState<RestaurantSearchPage> {
   TextEditingController get controller => TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // final ScrollController scrollController =
-    //     InheritedDataProvider.of(context).scrollController;
     return ScaffoldWidget(
       appBar: [
         const Expanded(

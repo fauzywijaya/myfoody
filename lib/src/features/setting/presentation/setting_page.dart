@@ -4,12 +4,11 @@ import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/features/setting/presentation/setting_controller.dart';
 
-class SettingPage extends ConsumerWidget {
+class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final themeModeState = ref.watch(settingControllerProvider);
+  Widget build(BuildContext context) {
     return ScaffoldWidget(
       appBar: [
         Text("Settings", style: Theme.of(context).appBarTheme.toolbarTextStyle),
@@ -18,6 +17,7 @@ class SettingPage extends ConsumerWidget {
         padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
         children: [
           Consumer(builder: (context, ref, child) {
+            final themeModeState = ref.watch(settingControllerProvider);
             return Material(
               color: Colors.transparent,
               child: ListTile(
@@ -37,19 +37,26 @@ class SettingPage extends ConsumerWidget {
             );
           }),
           const Divider(),
-          Material(
-            color: Colors.transparent,
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text("Daily Restaurants",
-                  style: Theme.of(context).textTheme.titleMedium),
-              trailing: Switch.adaptive(
-                  value: true,
-                  onChanged: (value) {},
-                  inactiveThumbColor: Theme.of(context).colorScheme.primary,
-                  activeColor: Theme.of(context).colorScheme.secondary),
-            ),
-          ),
+          Consumer(builder: (context, ref, _) {
+            final dailyState = ref.watch(settingControllerProvider);
+            return Material(
+              color: Colors.transparent,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text("Daily Restaurants",
+                    style: Theme.of(context).textTheme.titleMedium),
+                trailing: Switch.adaptive(
+                    value: dailyState.daily,
+                    onChanged: (value) {
+                      ref
+                          .read(settingControllerProvider.notifier)
+                          .setDailyRestaurant(value);
+                    },
+                    inactiveThumbColor: Theme.of(context).colorScheme.primary,
+                    activeColor: Theme.of(context).colorScheme.secondary),
+              ),
+            );
+          }),
           const Divider(),
           Material(
             color: Colors.transparent,

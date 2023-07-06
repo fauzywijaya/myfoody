@@ -52,9 +52,6 @@ class RestaurantListController extends StateNotifier<RestaurantListState> {
 
   void festchRestaurantByCity({required String city}) async {
     state = state.copyWith(restaurantByCityValue: const AsyncLoading());
-    // if (state.restaurants == null) {
-    //   return fetchRestaurantList();
-    // }
 
     try {
       final restaurantByCity = state.restaurants?.restaurants
@@ -69,12 +66,6 @@ class RestaurantListController extends StateNotifier<RestaurantListState> {
         restaurantByCityValue: AsyncError(error, stackTrace),
       );
     }
-
-    // final result = await _restaurantService.getRestaurantList();
-    // result.when(
-    //   success: (data) {},
-    //   failure: (error, stackTrace) {},
-    // );
   }
 }
 
