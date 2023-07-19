@@ -5,6 +5,7 @@ import 'package:myfoody/src/common_widget/common_widget.dart';
 import 'package:myfoody/src/constants/keys/extras_key.dart';
 import 'package:myfoody/src/features/domain.dart';
 import 'package:myfoody/src/routes/routes.dart';
+import 'package:myfoody/src/shared/extensions/extension.dart';
 
 class RestaurantListWidget extends StatelessWidget {
   final List<Restaurant>? restaurantItems;
@@ -33,7 +34,7 @@ class RestaurantListWidget extends StatelessWidget {
                 ),
               );
             },
-            imageUrl: item!.pictureId,
+            imageUrl: item!.pictureId.getMediumPicture,
             name: item.name,
             description: item.description,
             location: item.city,

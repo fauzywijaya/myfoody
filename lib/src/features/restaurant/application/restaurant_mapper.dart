@@ -1,6 +1,5 @@
 import 'package:myfoody/src/features/data.dart';
 import 'package:myfoody/src/features/domain.dart';
-import 'package:myfoody/src/shared/extensions/extension.dart';
 
 class RestaurantMapper {
   static RestaurantList mapToRestaurantList(RestaurantListResonses data) {
@@ -42,7 +41,7 @@ class RestaurantMapper {
       city: restaurant?.city,
       description: restaurant?.description,
       name: restaurant?.name,
-      pictureId: restaurant?.pictureId?.getLargePicture,
+      pictureId: restaurant?.pictureId,
       rating: restaurant?.rating,
       address: restaurant?.address,
       categories: restaurant?.categories
@@ -62,6 +61,17 @@ class RestaurantMapper {
             ?.map((drink) => Food(name: drink.name))
             .toList(),
       ),
+    );
+  }
+
+  static Restaurant mapToRestaurant(RestaurantDetail restaurantDetail) {
+    return Restaurant(
+      id: restaurantDetail.id,
+      city: restaurantDetail.city,
+      description: restaurantDetail.description,
+      name: restaurantDetail.name,
+      pictureId: restaurantDetail.pictureId,
+      rating: restaurantDetail.rating.toString(),
     );
   }
 }

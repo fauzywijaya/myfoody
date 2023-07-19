@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myfoody/src/features/presentation.dart';
+import 'package:myfoody/src/shared/extensions/extension.dart';
 
 class ImageDetailSection extends ConsumerWidget {
   const ImageDetailSection({
@@ -16,7 +17,7 @@ class ImageDetailSection extends ConsumerWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.r),
       child: CachedNetworkImage(
-        imageUrl: image,
+        imageUrl: image.getLargePicture,
         fit: BoxFit.cover,
         height: 200.h,
         width: MediaQuery.of(context).size.width,

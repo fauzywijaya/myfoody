@@ -58,7 +58,7 @@ class CustomCardWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.r),
                       child: FittedBox(
                         child: CachedNetworkImage(
-                          imageUrl: imageUrl.getMediumPicture,
+                          imageUrl: imageUrl,
                           height: 75.h,
                           width: 75.w,
                           fit: BoxFit.cover,

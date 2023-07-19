@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:myfoody/src/constants/constants.dart';
@@ -8,7 +9,7 @@ import 'package:myfoody/src/services/services.dart';
 class StorageService {
   final favoriteBox = Hive.box<String>(HiveKey.favoriteBox);
 
-  Future<void> saveFavoriteRestaurant(RestaurantDetail restaurant) async {
+  Future<void> saveFavoriteRestaurant(Restaurant restaurant) async {
     final restaurantJson = restaurant.toJson();
     return await favoriteBox.put(restaurant.id, restaurantJson);
   }
@@ -21,11 +22,11 @@ class StorageService {
     return favoriteBox.containsKey(restaurantId);
   }
 
-  Result<List<RestaurantDetail>> getAllFavorite() {
+  Result<List<Restaurant>> getAllFavorite() {
     try {
       return Result.success(
-        (favoriteBox.values).map<RestaurantDetail>((item) {
-          return RestaurantDetail.fromJson(item);
+        (favoriteBox.values).map<Restaurant>((item) {
+          return Restaurant.fromJson(item);
         }).toList(),
       );
     } catch (error, stackTrace) {
@@ -34,14 +35,15 @@ class StorageService {
     }
   }
 
-  Result<List<RestaurantDetail>> getAllFavoriteMovies() {
+  Result<List<Restaurant>> getAllFavoriteMovies() {
     try {
       return Result.success(
-        (favoriteBox.values).map<RestaurantDetail>((item) {
-          return RestaurantDetail.fromJson(item);
+        (favoriteBox.values).map<Restaurant>((item) {
+          return Restaurant.fromJson(item);
         }).toList(),
       );
     } catch (e, st) {
+      debugPrint(e.toString());
       return Result.failure(NetworkExceptions.getDioExceptions(e), st);
     }
   }

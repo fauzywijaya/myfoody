@@ -29,7 +29,8 @@ class RestaurantDetailController extends StateNotifier<RestaurantDetailState> {
     if (state.isFavorite) {
       _storageService.deleteFavoriteRestaurant(state.restaurantDetail!.id);
     } else {
-      _storageService.saveFavoriteRestaurant(state.restaurantDetail!);
+      _storageService.saveFavoriteRestaurant(
+          RestaurantMapper.mapToRestaurant(state.restaurantDetail!));
     }
 
     state = state.copyWith(
