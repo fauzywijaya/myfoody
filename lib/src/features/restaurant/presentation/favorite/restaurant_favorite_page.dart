@@ -25,7 +25,7 @@ class _RestaurantFavoritePageState
 
   @override
   void didChangeDependencies() {
-    safeRebuild(() => controller.getFavoriteMovies());
+    safeRebuild(() => controller.getFavoriteRestaurant());
     super.didChangeDependencies();
   }
 
@@ -34,63 +34,71 @@ class _RestaurantFavoritePageState
     final ScrollController scrollController =
         InheritedDataProvider.of(context).scrollController;
     return ScaffoldWidget(
-      appBar: [
-        Text(
-          "Favorite",
-          style: Theme.of(context).appBarTheme.toolbarTextStyle,
-        )
-      ],
-      body: Builder(
-        builder: (context) {
-          if (state.isLoading) {
-            return const Center(
-              child: LottieWidget(assets: Resource.lottieLoading),
-            );
-          } else if (state.favoriteRestaurantsValue.hasError) {
-            return Center(
-              child: Text(
-                (state.favoriteRestaurantsValue as AsyncError).error.toString(),
-              ),
-            );
-          } else if (state.favoriteRestaurants.isEmpty) {
-            return const Center(
-              child: LottieWidget(
-                assets: Resource.lottieEmpty,
-                description: "You dont have Favorite",
-              ),
-            );
-          }
-          return FadeInUp(
-            from: 20.0,
-            duration: const Duration(milliseconds: 500),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              controller: scrollController,
-              itemCount: state.favoriteRestaurants.length,
-              itemBuilder: (context, index) {
-                final item = state.favoriteRestaurants[index];
-                return CustomCardWidget(
-                  onTap: () {
-                    context.goNamed(
-                      Routes.detail.name,
-                      extra: Extras(
-                        datas: {
-                          ExtrasKey.restaurantId: item.id,
+      appBar: Text(
+        "Favorite",
+        style: Theme.of(context).appBarTheme.toolbarTextStyle,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Builder(
+              builder: (context) {
+                if (state.isLoading) {
+                  return const Center(
+                    child: LottieWidget(assets: Resource.lottieLoading),
+                  );
+                } else if (state.favoriteRestaurantsValue.hasError) {
+                  return Center(
+                    child: Text(
+                      (state.favoriteRestaurantsValue as AsyncError)
+                          .error
+                          .toString(),
+                    ),
+                  );
+                } else if (state.favoriteRestaurants.isEmpty) {
+                  return const Center(
+                    child: LottieWidget(
+                      assets: Resource.lottieEmpty,
+                      description: "You dont have Favorite",
+                    ),
+                  );
+                }
+                return FadeInUp(
+                  from: 20.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    controller: scrollController,
+                    itemCount: state.favoriteRestaurants.length,
+                    itemBuilder: (context, index) {
+                      final item = state.favoriteRestaurants[index];
+                      return CustomCardWidget(
+                        onTap: () {
+                          context.goNamed(
+                            Routes.detail.name,
+                            extra: Extras(
+                              datas: {
+                                ExtrasKey.restaurantId: item.id,
+                              },
+                            ),
+                          );
                         },
-                      ),
-                    );
-                  },
-                  imageUrl: item.pictureId,
-                  name: item.name,
-                  description: item.description,
-                  location: item.city,
-                  rating: item.rating.toString(),
+                        imageUrl: item.pictureId.getMediumPicture,
+                        name: item.name,
+                        description: item.description,
+                        location: item.city,
+                        rating: item.rating.toString(),
+                      );
+                    },
+                  ),
                 );
               },
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

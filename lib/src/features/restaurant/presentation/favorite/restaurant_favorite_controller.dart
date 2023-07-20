@@ -9,12 +9,12 @@ class RestaurantFavoriteController
   RestaurantFavoriteController(this._storageService)
       : super(const RestaurantFavoriteState());
 
-  void getFavoriteMovies() async {
+  void getFavoriteRestaurant() async {
     state = state.copyWith(
       favoriteRestaurantsValue: const AsyncLoading(),
     );
 
-    final result = _storageService.getAllFavoriteMovies();
+    final result = _storageService.getAllFavorite();
     result.when(
       success: (data) {
         state = state.copyWith(

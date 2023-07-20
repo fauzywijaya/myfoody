@@ -39,32 +39,7 @@ class _RestaurantDetailPageState extends ConsumerState<RestaurantDetailPage> {
         value: state.restaurantDetailValue,
         data: (data) {
           return ScaffoldWidget(
-            appBar: [
-              const BackButtonWidget(),
-              Text(
-                state.restaurantDetail?.name ?? '',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              IconButton(
-                onPressed: () {
-                  controller.toggleFavorite();
-                },
-                icon: state.isFavorite
-                    ? const Icon(
-                        Icons.favorite_rounded,
-                        color: AppColors.lightRed,
-                      )
-                    : const Icon(
-                        Icons.favorite_border_rounded,
-                        color: AppColors.grey,
-                      ),
-                splashRadius: 24.0,
-                splashColor:
-                    state.isFavorite ? AppColors.lightRed : AppColors.lightGrey,
-                padding: EdgeInsets.zero,
-                iconSize: 24.0,
-              )
-            ],
+            appBar: AppBarSection(),
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(

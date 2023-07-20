@@ -31,11 +31,11 @@ class _RestaurantListCityPageState
     // print("ByCity ${widget.city}");
 
     return ScaffoldWidget(
-      appBar: [
+      appBar: Row(children: [
         const BackButtonWidget(),
         Text(widget.city, style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox.shrink()
-      ],
+      ]),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

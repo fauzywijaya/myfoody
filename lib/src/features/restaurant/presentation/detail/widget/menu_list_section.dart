@@ -30,7 +30,7 @@ class MenuListDrinkSection extends ConsumerWidget {
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: restaurant.menus.foods.length,
+            itemCount: restaurant.menus.drinks.length,
             itemBuilder: (context, index) {
               final drink = restaurant.menus.drinks[index];
               return ChipMenu(icon: Icons.water_drop_rounded, menu: drink.name);

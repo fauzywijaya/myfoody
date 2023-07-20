@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myfoody/src/features/application.dart';
@@ -10,6 +12,19 @@ class RestaurantSearchController extends StateNotifier<RestaurantSearchState> {
       : super(RestaurantSearchState());
 
   final queryTextController = TextEditingController();
+
+  Timer? _debounce;
+
+  void onChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      if (query.isEmpty) {
+        reset();
+        return;
+      }
+      search(query);
+    });
+  }
 
   Future<void> searchRestaurant({required String query}) async {
     state = state.copyWith(searchValue: const AsyncLoading());
@@ -28,11 +43,22 @@ class RestaurantSearchController extends StateNotifier<RestaurantSearchState> {
     state = state.copyWith(query: query);
   }
 
+  void reset() {
+    state = state.copyWith(searchValue: const AsyncData(null), query: "");
+  }
+
   void search(String value) {
     if (value.isNotEmpty) {
       searchRestaurant(query: value);
     }
     setQuery(query: value);
+  }
+
+  @override
+  void dispose() {
+    queryTextController.dispose();
+    _debounce?.cancel();
+    super.dispose();
   }
 }
 

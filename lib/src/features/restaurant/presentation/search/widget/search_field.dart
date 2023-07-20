@@ -15,21 +15,14 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
+        final controller =
+            ref.read(restaurantSearchControllerProvider.notifier);
         return InputFormWidget.search(
-          controller: controller,
+          controller: controller.queryTextController,
           hintText: 'Kafe Kamara',
           prefixIcon: Icons.search_rounded,
           suffixIcon: Icons.close_rounded,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
-              ref
-                  .read(restaurantSearchControllerProvider.notifier)
-                  .searchRestaurant(query: value);
-            }
-            ref
-                .read(restaurantSearchControllerProvider.notifier)
-                .setQuery(query: value);
-          },
+          onChanged: controller.onChanged,
         );
       },
     );

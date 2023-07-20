@@ -10,9 +10,8 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
-      appBar: [
-        Text("Settings", style: Theme.of(context).appBarTheme.toolbarTextStyle),
-      ],
+      appBar: Text("Settings",
+          style: Theme.of(context).appBarTheme.toolbarTextStyle),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
         children: [

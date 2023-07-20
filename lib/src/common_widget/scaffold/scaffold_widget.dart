@@ -6,7 +6,7 @@ import 'package:myfoody/src/constants/constants.dart';
 import 'package:myfoody/src/shared/shared.dart';
 
 class ScaffoldWidget extends StatefulWidget {
-  final List<Widget> appBar;
+  final Widget appBar;
   final Widget body;
 
   const ScaffoldWidget({Key? key, required this.appBar, required this.body})
@@ -65,9 +65,7 @@ class _ScaffoldWidgetState extends State<ScaffoldWidget>
               systemOverlayStyle: SystemUiOverlayStyle(
                 statusBarBrightness: Theme.of(context).brightness,
               ),
-              title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: widget.appBar),
+              title: widget.appBar,
             );
           },
         ),

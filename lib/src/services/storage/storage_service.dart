@@ -29,19 +29,6 @@ class StorageService {
           return Restaurant.fromJson(item);
         }).toList(),
       );
-    } catch (error, stackTrace) {
-      return Result.failure(
-          NetworkExceptions.getDioExceptions(error), stackTrace);
-    }
-  }
-
-  Result<List<Restaurant>> getAllFavoriteMovies() {
-    try {
-      return Result.success(
-        (favoriteBox.values).map<Restaurant>((item) {
-          return Restaurant.fromJson(item);
-        }).toList(),
-      );
     } catch (e, st) {
       debugPrint(e.toString());
       return Result.failure(NetworkExceptions.getDioExceptions(e), st);
